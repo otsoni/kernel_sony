@@ -1546,6 +1546,13 @@ config HAVE_ARM_ARCH_TIMER
 	help
 	  This option enables support for the ARM architected timer
 
+config HAVE_ARM_ARCH_TIMER_YUGA
+	bool "Architected timer support for yuga"
+	select ARM_ARCH_TIMER_YUGA
+	select CLKSRC_OF
+	help
+	  This option enables support for the ARM architected timer for yuga
+
 config HAVE_ARM_TWD
 	bool
 	depends on SMP

@@ -22,8 +22,10 @@
  * 16-31: PPI (private peripheral interrupts)
  * 32+:   SPI (shared peripheral interrupts)
  */
-#define GIC_PPI_START 16
-#define GIC_SPI_START 32
+#define GIC_PPI_START		16
+#define GIC_SPI_START		32
+#define INT_GP_TIMER_EXP	7
+#define INT_DEBUG_TIMER_EXP	8
 
 #define MSM_IRQ_BIT(irq)     (1 << ((irq) & 31))
 

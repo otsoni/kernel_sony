@@ -19,7 +19,7 @@ config ARCH_MSM8974
 	select MSM_PM if PM
 	select MSM_RPM_SMD
 	select REGULATOR
-	select HAVE_ARM_ARCH_TIMER
+	select HAVE_ARM_ARCH_TIMER_YUGA
 	select MSM_QDSP6_APRV2
 	select MSM_QDSP6V2_CODECS
 	select REGULATOR_RPM_SMD
@@ -38,6 +38,9 @@ config ARCH_MSM8974
 	select PINCTRL
 	select PINCTRL_MSM_TLMM
 	select HAVE_NMI_WATCHDOG if MSM_WATCHDOG_V2
+
+config ARCH_APQ8064
+	bool "APQ8064"
 
 config ARCH_APQ8084
 	bool "APQ8084"
@@ -594,7 +597,7 @@ config MSM_STACKED_MEMORY
 
 config PHYS_OFFSET
 	hex
-	default "0x00000000" if ARCH_MSM8974
+	default "0x80200000" if ARCH_MSM8974
 	default "0x00000000" if ARCH_APQ8084
 	default "0x00000000" if ARCH_MSM8226
 	default "0x00000000" if ARCH_MSM8610
