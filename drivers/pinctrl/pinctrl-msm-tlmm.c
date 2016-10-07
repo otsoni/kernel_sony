@@ -1202,6 +1202,8 @@ static int msm_tlmm_probe(struct platform_device *pdev)
 	const struct msm_pintype_data **pintype_data;
 	struct device_node *node = pdev->dev.of_node;
 
+	printk("msm_tlmm_probe()\n");
+
 	match = of_match_node(msm_tlmm_dt_match, node);
 	if (IS_ERR(match))
 		return PTR_ERR(match);

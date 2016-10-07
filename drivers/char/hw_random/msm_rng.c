@@ -453,6 +453,8 @@ static int msm_rng_probe(struct platform_device *pdev)
 
 	struct msm_bus_scale_pdata *qrng_platform_support = NULL;
 
+	printk("msm_rng_probe()\n");
+
 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 	if (res == NULL) {
 		dev_err(&pdev->dev, "invalid address\n");
@@ -514,8 +516,12 @@ static int msm_rng_probe(struct platform_device *pdev)
 	/* Enable rng h/w */
 	error = msm_rng_enable_hw(msm_rng_dev);
 
+	printk("after msm_rng_enable_hw()\n");
+
 	if (error)
 		goto rollback_clk;
+
+	printk("no error\n");
 
 	mutex_init(&msm_rng_dev->rng_lock);
 

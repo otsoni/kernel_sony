@@ -647,19 +647,20 @@ struct msm_bus_fabric_registration
 	}
 
 	ret = of_property_read_u32(of_node, "qcom,qos-freq", &pdata->qos_freq);
-	if (ret)
-		pr_debug("qos_freq not available\n");
-
-	ret = of_property_read_string(of_node, "qcom,hw-sel", &sel_str);
 	if (ret) {
-		pr_err("Error: hw_sel not found\n");
-		goto err;
+		pr_debug("qos_freq not available\n");
 	} else {
-		ret = get_num(hw_sel_name, sel_str);
-		if (ret < 0)
+		ret = of_property_read_string(of_node, "qcom,hw-sel", &sel_str);
+		if (ret) {
+			pr_err("Error: hw_sel not found\n");
 			goto err;
+		} else {
+			ret = get_num(hw_sel_name, sel_str);
+			if (ret < 0)
+				goto err;
 
-		pdata->hw_sel = ret;
+			pdata->hw_sel = ret;
+		}
 	}
 
 	if (of_property_read_bool(of_node, "qcom,virt"))

@@ -58,9 +58,13 @@ struct clk *of_clk_get_by_name(struct device_node *np, const char *name)
 {
 	struct clk *clk = ERR_PTR(-ENOENT);
 
+	printk("of_clk_get_by_name()\n");
+
 	/* Walk up the tree of devices looking for a clock that matches */
 	while (np) {
 		int index = 0;
+
+		printk("while loop\n");
 
 		/*
 		 * For named clocks, first look up the name in the
@@ -69,11 +73,14 @@ struct clk *of_clk_get_by_name(struct device_node *np, const char *name)
 		 */
 		if (name)
 			index = of_property_match_string(np, "clock-names", name);
+		printk("index: %d\n", index);
 		clk = of_clk_get(np, index);
 		if (!IS_ERR(clk))
 			break;
-		else if (name && index >= 0)
+		else if (name && index >= 0) {
+			printk("no error in of_clk_get()\n");
 			return clk;
+		}
 
 		/*
 		 * No matching clock found on this node.  If the parent node
@@ -151,6 +158,8 @@ struct clk *clk_get(struct device *dev, const char *con_id)
 {
 	const char *dev_id = dev ? dev_name(dev) : NULL;
 	struct clk *clk;
+
+	printk("clk_get() %s\n", con_id);
 
 	if (dev) {
 		clk = of_clk_get_by_name(dev->of_node, con_id);

@@ -243,6 +243,7 @@ config PINCTRL_S3C64XX
 	select PINCTRL_SAMSUNG
 
 source "drivers/pinctrl/mvebu/Kconfig"
+source "drivers/pinctrl/qcom/Kconfig"
 source "drivers/pinctrl/sh-pfc/Kconfig"
 source "drivers/pinctrl/spear/Kconfig"
 source "drivers/pinctrl/vt8500/Kconfig"
